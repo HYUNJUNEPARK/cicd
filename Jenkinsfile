@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo '도커 이미지 빌드'
-                sh 'docker-compose -f ${COMPOSE_FILE} build --no-cache app'
+                sh 'docker compose -f ${COMPOSE_FILE} build --no-cache app'
             }
         }
 
@@ -36,8 +36,8 @@ pipeline {
             steps {
                 echo '컨테이너 배포'
                 sh '''
-                    docker-compose -f ${COMPOSE_FILE} down --remove-orphans
-                    docker-compose -f ${COMPOSE_FILE} up -d
+                    docker compose -f ${COMPOSE_FILE} down --remove-orphans
+                    docker compose -f ${COMPOSE_FILE} up -d
                 '''
             }
         }
@@ -49,7 +49,7 @@ pipeline {
         }
         failure {
             echo '배포 실패 - 이전 컨테이너 복구 시도'
-            sh 'docker-compose -f ${COMPOSE_FILE} up -d || true'
+            sh 'docker compose -f ${COMPOSE_FILE} up -d || true'
         }
     }
 }
