@@ -6,7 +6,6 @@ pipeline {
         CONTAINER_NAME = 'node-app'
         COMPOSE_FILE = 'docker-compose.yml'
     }
-
     stages {
         stage('Checkout') {
             steps {
