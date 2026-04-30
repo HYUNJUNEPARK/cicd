@@ -12,11 +12,10 @@ pipeline {
                 echo '코드 체크아웃'
                 checkout scm
                 withCredentials([file(credentialsId: 'app-env-file', variable: 'ENV_FILE')]) {
-                    sh 'cp $ENV_FILE .env'
+                    sh 'cp $ENV_FILE $WORKSPACE/.env'
                 }
             }
         }
-
         stage('Build') {
             steps {
                 echo '도커 이미지 빌드'
