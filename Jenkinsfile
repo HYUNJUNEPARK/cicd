@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Build') {
             steps {
                 echo '도커 이미지 빌드'
@@ -46,6 +46,7 @@ pipeline {
         success {
             echo '배포 성공'
         }
+        
         failure {
             echo '배포 실패 - 이전 컨테이너 복구 시도'
             sh 'docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} up -d || true'
