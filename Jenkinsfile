@@ -20,6 +20,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Build') {
             steps {
                 echo '도커 이미지 빌드'
