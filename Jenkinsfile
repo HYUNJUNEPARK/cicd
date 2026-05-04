@@ -22,14 +22,13 @@ pipeline {
                 }
             }
         }
-        
         stage('Build') {
             steps {
                 echo '도커 이미지 빌드'
                 sh 'docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} build --no-cache app'
             }
         }
-        
+
         stage('Test') {
             steps {
                 echo '테스트 실행'
