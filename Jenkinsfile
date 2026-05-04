@@ -29,7 +29,6 @@ pipeline {
                 sh 'docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} build --no-cache app'
             }
         }
-
         stage('Test') {
             steps {
                 echo '테스트 실행'
