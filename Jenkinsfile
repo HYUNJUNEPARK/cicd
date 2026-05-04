@@ -12,7 +12,11 @@ pipeline {
                 echo '코드 체크아웃'
                 checkout scm
                 withCredentials([file(credentialsId: 'app-env-file', variable: 'ENV_FILE')]) {
-                    sh 'cp $ENV_FILE $WORKSPACE/.env'
+                    sh '''
+                        cp $ENV_FILE $WORKSPACE/.env
+                        sed -i 's/^export //g' $WORKSPACE/.env
+                        sed -i 's/\\r//' $WORKSPACE/.env
+                    '''
                 }
             }
         }
