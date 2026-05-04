@@ -14,6 +14,7 @@ pipeline {
                 checkout scm
                 withCredentials([file(credentialsId: 'app-env-file', variable: 'ENV_FILE')]) {
                     sh '''
+                        rm -f $WORKSPACE/.env
                         cp $ENV_FILE $WORKSPACE/.env
                         sed -i 's/^export //g' $WORKSPACE/.env
                         sed -i 's/\\r//' $WORKSPACE/.env
