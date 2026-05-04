@@ -10,6 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo '코드 체크아웃'
+                sh 'whoami && ls -la $WORKSPACE'
                 checkout scm
                 withCredentials([file(credentialsId: 'app-env-file', variable: 'ENV_FILE')]) {
                     sh '''
