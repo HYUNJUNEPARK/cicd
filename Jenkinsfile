@@ -42,6 +42,7 @@ pipeline {
                 sh '''
                     docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} down --remove-orphans
                     docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} up -d
+                    docker image prune -f
                 '''
             }
         }
