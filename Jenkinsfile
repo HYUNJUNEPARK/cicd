@@ -35,7 +35,7 @@ pipeline {
                         echo "백업할 기존 이미지 없음"
                     fi
 
-                    docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} build --no-cache app
+                    docker compose --env-file $WORKSPACE/.env -f ${COMPOSE_FILE} build app
                 '''
             }
         }
